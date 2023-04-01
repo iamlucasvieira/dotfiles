@@ -49,3 +49,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Create GOPATH alias and add bin to path
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
