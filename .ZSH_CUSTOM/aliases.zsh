@@ -23,3 +23,6 @@ alias vim="nvim"
 # dotfiles git 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+# Fuck
+eval $(thefuck --alias)
+
