@@ -30,7 +30,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # Homebrew
-eval source <(/opt/homebrew/bin/starship init zsh --print-full-init)
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.1.2
@@ -57,3 +56,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# Inisialise startship (insalled with brew)
+eval "$(starship init zsh)"
