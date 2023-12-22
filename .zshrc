@@ -54,8 +54,10 @@ unset __conda_setup
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# Inisialise startship (insalled with brew)
+eval "$(starship init zsh)"
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
-# Inisialise startship (insalled with brew)
-eval "$(starship init zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
