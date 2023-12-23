@@ -55,7 +55,21 @@ vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next error in quickfi
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous error in quickfix list" })
 
 -- Go to next error in location list
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next error in location list" })
+vim.keymap.set("n", "<leader>K", "<cmd>lnext<CR>zz", { desc = "Next error in location list" })
 
 -- Go to previous error in location list
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous error in location list" })
+vim.keymap.set("n", "<leader>J", "<cmd>lprev<CR>zz", { desc = "Previous error in location list" })
+
+-- Movement
+vim.keymap.set("n", "<leader>h", "<Cmd>wincmd h<CR>", { desc = "Move cursor to left window" })
+vim.keymap.set("n", "<leader>j", "<Cmd>wincmd j<CR>", { desc = "Move cursor to bottomw window" })
+vim.keymap.set("n", "<leader>k", "<Cmd>wincmd k<CR>", { desc = "Move cursor to top window" })
+vim.keymap.set("n", "<leader>l", "<Cmd>wincmd l<CR>", { desc = "Move cursor to right window" })
+vim.keymap.set("n", "<leader>+", "<Cmd>vertical resize +5<CR>", { desc = "Resize window +5" })
+vim.keymap.set("n", "<leader>-", "<Cmd>vertical resize -5<CR>", { desc = "Resize window -5" })
+vim.keymap.set("n", "<C-S>", "<Cmd>write<CR>", { desc = "Save buffer" })
+
+-- Tabs
+vim.keymap.set("n", "<leader>q", "<Cmd>bprevious<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>e", "<Cmd>bnext<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "<leader>w", "<Cmd>bdelete<CR>", { desc = "Delete buffer" })
