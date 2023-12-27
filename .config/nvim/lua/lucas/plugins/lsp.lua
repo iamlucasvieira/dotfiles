@@ -69,7 +69,7 @@ return {
 			lsp_zero.extend_lspconfig()
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls" },
+				ensure_installed = { "gopls", "pyright" },
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()

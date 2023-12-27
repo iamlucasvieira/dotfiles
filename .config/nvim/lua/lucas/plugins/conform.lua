@@ -7,7 +7,7 @@ return {
 				formatters_by_ft = {
 					-- Conform will run multiple formatters sequentially
 					python = { "black" },
-					go = { "goimports-reviser", "gofumt" },
+					go = { "goimports-reviser", "gofumt", "goimports" },
 					javascript = { "prettier" },
 					css = { "prettier" },
 					html = { "prettier" },
