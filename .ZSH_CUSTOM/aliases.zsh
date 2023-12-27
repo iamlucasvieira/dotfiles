@@ -2,6 +2,7 @@
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"
 alias aliases="vi $zsh/aliases.zsh"
+alias vimconfig="cd $HOME/.config/nvim && nvim ." 
 
 alias u="ultralist"
 alias uc="ultralist l group:context"
@@ -17,7 +18,8 @@ alias c="ultralist l completed:tod"
 
 # pipe ultralist into fzf for ultra-fast searching of tasks!
 alias uf="script -c \"ultralist l\"  < /dev/null | fzf --ansi"
-alias vi="lvim"
+
+alias vi="nvim"
 alias vim="nvim"
 
 # dotfiles git 
