@@ -1,6 +1,27 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		dependencies = {
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+		},
+
+		config = function()
+			local mason_tool_installer = require("mason-tool-installer")
+
+			mason_tool_installer.setup({
+				ensure_installed = {
+					"prettier", -- prettier formatter
+					"stylua", -- lua formatter
+					"isort", -- python formatter
+					"black", -- python formatter
+					"flake8", -- python linter
+					"mypy", -- python linter
+					"eslint_d", -- js linter
+					"goimports-reviser", -- go imports formatter
+					"goimports", -- go formatter
+				},
+			})
+		end,
 	},
 
 	{

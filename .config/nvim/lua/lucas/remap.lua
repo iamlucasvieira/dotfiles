@@ -46,7 +46,7 @@ vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Q in normal mode" })
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Open tmux sessionizer" })
 
 -- Format buffer with LSP
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer with LSP" })
+vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format buffer with LSP" })
 
 -- Go to next error in quickfix list
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next error in quickfix list" })

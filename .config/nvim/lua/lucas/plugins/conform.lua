@@ -6,7 +6,7 @@ return {
 			require("conform").setup({
 				formatters_by_ft = {
 					-- Conform will run multiple formatters sequentially
-					python = { "black" },
+					python = { "isort", "black" },
 					go = { "goimports-reviser", "gofumt", "goimports" },
 					javascript = { "prettier" },
 					css = { "prettier" },
