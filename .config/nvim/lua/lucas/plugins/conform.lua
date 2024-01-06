@@ -14,6 +14,7 @@ return {
 					json = { "prettier" },
 					yaml = { "prettier" },
 					lua = { "stylua" },
+					markdown = { "prettier" },
 					-- Use a sub-list to run only the first available formatter
 				},
 				format_on_save = {
