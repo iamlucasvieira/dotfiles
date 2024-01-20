@@ -4,6 +4,12 @@ alias ohmyzsh="cd ~/.oh-my-zsh"
 alias aliases="vi $zsh/aliases.zsh"
 alias vimconfig="cd $HOME/.config/nvim && nvim ." 
 
+# Copilot CLI aliases
+alias "git?"="gh copilot suggest -t git"
+alias "??"="gh copilot suggest -t shell"
+alias "gh?"="gh copilot suggest -t gh"
+
+# Ultralist aliases
 alias u="ultralist"
 alias uc="ultralist l group:context"
 alias up="ultralist l group:project"
@@ -15,10 +21,10 @@ alias wed="ultralist l group:project due:wed"
 alias thu="ultralist l group:project due:thu"
 alias fri="ultralist l group:project due:fri"
 alias c="ultralist l completed:tod"
-
 # pipe ultralist into fzf for ultra-fast searching of tasks!
 alias uf="script -c \"ultralist l\"  < /dev/null | fzf --ansi"
 
+# nvim aliases
 alias vi="nvim"
 alias vim="nvim"
 
