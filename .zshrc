@@ -42,7 +42,11 @@ export PATH=$PATH:$GOPATH/bin
 # Inisialise startship (insalled with brew)
 eval "$(starship init zsh)"
 
+# fzf (insalled with brew)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide (insalled with brew)
+eval "$(zoxide init zsh)"
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
