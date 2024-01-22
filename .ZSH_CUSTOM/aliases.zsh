@@ -35,3 +35,8 @@ alias lazydot='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Fuck
 eval $(thefuck --alias)
 
+# exa
+alias e="eza"
+alias ea="eza -a"
+alias el="eza -lah"
+alias es="eza --color=auto --icons=auto"
