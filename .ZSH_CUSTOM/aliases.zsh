@@ -40,3 +40,7 @@ alias e="eza"
 alias ea="eza -a"
 alias el="eza -lah"
 alias es="eza --color=auto --icons=auto"
+
+# alias for my scripts 
+alias myscr="$HOME/.local/bin/scripts"
+alias se="tmux-sessionizer"

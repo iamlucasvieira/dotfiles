@@ -24,6 +24,9 @@ for config_file ("$zsh"/*.zsh(N)); do
 done
 unset config_file
 
+# Add scripts to path
+export PATH=$PATH:$HOME/.local/bin/scripts
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
