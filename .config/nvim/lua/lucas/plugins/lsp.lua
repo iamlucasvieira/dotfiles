@@ -12,10 +12,7 @@ return {
 				ensure_installed = {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
-					"isort", -- python formatter
-					"black", -- python formatter
-					"flake8", -- python linter
-					"mypy", -- python linter
+					"ruff", -- python formatter
 					"eslint_d", -- js linter
 					"goimports-reviser", -- go imports formatter
 					"goimports", -- go formatter
@@ -97,6 +94,31 @@ return {
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require("lspconfig").lua_ls.setup(lua_opts)
 					end,
+				},
+			})
+			local on_attach = function(client, bufnr)
+				if client.name == "ruff_lsp" then
+					-- Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end
+			end
+
+			require("lspconfig").ruff_lsp.setup({
+				on_attach = on_attach,
+			})
+
+			require("lspconfig").pyright.setup({
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { "*" },
+						},
+					},
 				},
 			})
 		end,
