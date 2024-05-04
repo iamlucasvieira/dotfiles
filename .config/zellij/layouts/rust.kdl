@@ -1,0 +1,24 @@
+layout {
+    tab name="rust"{
+        pane size=1 borderless=true {
+            plugin location="tab-bar"
+        }
+        pane split_direction="vertical" {
+            pane edit="src/main.rs" {
+                name "code"
+                }
+            pane split_direction="horizontal" {
+                cargo { args "check"; }
+                cargo { args "run"; }
+                cargo { args "test"; }
+            }
+        }
+        pane size=2 borderless=true {
+            plugin location="status-bar"
+        }
+    }
+    pane_template name="cargo" {
+        command "cargo"
+        start_suspended true
+        }
+}
