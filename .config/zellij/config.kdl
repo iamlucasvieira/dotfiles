@@ -199,7 +199,6 @@ plugins {
     }
 }
 
-theme "catppuccin-macchiato"
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 // eg. when terminal window with an active zellij session is closed
@@ -281,7 +280,7 @@ theme "catppuccin-macchiato"
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-// theme "default"
+theme "catppuccin-macchiato"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -337,7 +336,7 @@ theme "catppuccin-macchiato"
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/opt/homebrew/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
