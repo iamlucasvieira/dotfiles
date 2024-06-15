@@ -13,9 +13,10 @@ return {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
 					"ruff", -- python formatter
-					"eslint_d", -- js linter
+					"eslint-lsp", -- js linter
 					"goimports-reviser", -- go imports formatter
 					"goimports", -- go formatter
+					"typescript-language-server", -- typescript language server
 				},
 			})
 		end,

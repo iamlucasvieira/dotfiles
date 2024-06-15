@@ -8,6 +8,8 @@ return {
 			lint.linters_by_ft = {
 				python = { "ruff" },
 				go = { "golangcilint" },
+				javascript = { "eslint" },
+				typescript = { "eslint" },
 			}
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
