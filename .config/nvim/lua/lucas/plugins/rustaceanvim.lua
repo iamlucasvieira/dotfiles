@@ -1,7 +1,7 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3", -- Recommended
+		version = "^4", -- Recommended
 		ft = { "rust" },
 		keys = {
 			{ "<leader>ra", "<Cmd>RustLsp codeAction<CR>", desc = "Open code actions." },
