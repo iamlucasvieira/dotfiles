@@ -22,6 +22,12 @@ return {
 					timeout_ms = 500,
 					lsp_fallback = true,
 				},
+
+				formatters = {
+					prettier = {
+						prepend_args = { "--tab-width", "4" },
+					},
+				},
 			})
 			local conform = require("conform")
 
