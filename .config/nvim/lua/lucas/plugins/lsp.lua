@@ -1,65 +1,34 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/nvim-cmp",
+			"saadparwaiz1/cmp_luasnip",
+			"j-hui/fidget.nvim",
 		},
 
-		config = function()
-			local mason_tool_installer = require("mason-tool-installer")
-
-			mason_tool_installer.setup({
-				ensure_installed = {
-					"prettier", -- prettier formatter
-					"stylua", -- lua formatter
-					"ruff", -- python formatter
-					"eslint-lsp", -- js linter
-					"goimports-reviser", -- go imports formatter
-					"goimports", -- go formatter
-					"typescript-language-server", -- typescript language server
-				},
-			})
-		end,
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
 		config = function()
 			local cmp = require("cmp")
+			local cmp_lsp = require("cmp_nvim_lsp")
+			local capabilities = vim.tbl_deep_extend(
+				"force",
+				{},
+				vim.lsp.protocol.make_client_capabilities(),
+				cmp_lsp.default_capabilities()
+			)
 
-			cmp.setup({
-				sources = {
-					{ name = "nvim_lsp" },
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-				}),
-				snippet = {
-					expand = function(args)
-						vim.snippet.expand(args.body)
-					end,
-				},
-			})
-		end,
-	},
+			init = function()
+				-- Reserve a space in the gutter
+				-- This will avoid an annoying layout shift in the screen
+				vim.opt.signcolumn = "yes"
+			end
 
-	{
-		"neovim/nvim-lspconfig",
-		cmd = { "LspInfo", "LspInstall", "LspStart" },
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-		},
-		init = function()
-			-- Reserve a space in the gutter
-			-- This will avoid an annoying layout shift in the screen
-			vim.opt.signcolumn = "yes"
-		end,
-		config = function()
 			local lsp_defaults = require("lspconfig").util.default_config
 
 			-- Add cmp_nvim_lsp capabilities settings to lspconfig
@@ -72,8 +41,10 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
-					local opts = { buffer = event.buf }
-
+					local opts = {
+						buffer = event.buf,
+					}
+					vim.keymap.set("n", "<leader>vd", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
@@ -87,26 +58,48 @@ return {
 				end,
 			})
 
+			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = {},
+				ensure_installed = { "lua_ls", "gopls", "pyright" },
 				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
-					function(server_name)
-						require("lspconfig")[server_name].setup({})
+					function(server_name) -- default handler (optional)
+						require("lspconfig")[server_name].setup({
+							capabilities = capabilities,
+						})
 					end,
 				},
 			})
+
+			local cmp_select = {
+				behavior = cmp.SelectBehavior.Select,
+			}
+
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+					["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+					["<C-y>"] = cmp.mapping.confirm({
+						select = true,
+					}),
+					["<C-Space>"] = cmp.mapping.complete(),
+				}),
+				sources = cmp.config.sources({
+					{
+						name = "nvim_lsp",
+					},
+					{
+						name = "luasnip",
+					}, -- For luasnip users.
+				}, { {
+					name = "buffer",
+				} }),
+			})
 		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-	},
-	{
-		"neovim/nvim-lspconfig",
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp",
 	},
 	{
 		"L3MON4D3/LuaSnip",
